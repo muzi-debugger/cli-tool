@@ -1,25 +1,22 @@
 import typer
-from rich import print
-
-existing_usernames = ["rick", "morty"]
+from typing_extensions import Annotated
 
 
-def maybe_create_user(username: str):
-    if username in existing_usernames:
-        print("[bold red] The user already exists [/bold red]")
-        raise typer.Abort()
-    else:
-        print(f"[bold green] The user {username} was created [/bold green]")
-
-
-def send_new_user_notification(username: str):
-    # Somehow send a notification here for the new user, maybe an email
-    print(f"Notification sent for new user: {username}")
-
-
-def main(username: str):
-    maybe_create_user(username=username)
-    send_new_user_notification(username=username)
+def main(
+    name: Annotated[str, typer.Argument(help="Who to greet")],
+    
+    lastname: Annotated[
+        str, typer.Argument(help="The last name", rich_help_panel="Secondary Arguments")
+    ] = "",
+    age: Annotated[
+        str,
+        typer.Argument(help="The user's age", rich_help_panel="Secondary Arguments"),
+    ] = "",
+):
+    """
+    Add a name argument and an optional lastname argument.
+    """
+    print(f"Hello {name} {lastname} you are {age} years old")
 
 
 if __name__ == "__main__":
