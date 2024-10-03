@@ -1,4 +1,6 @@
 import typer
+from rich import print
+
 
 
 def main(name: str, lastname: str ="", formal: bool = False):
@@ -10,7 +12,7 @@ def main(name: str, lastname: str ="", formal: bool = False):
      if formal:
         print(f"Good day Mr. {name} {lastname}.")
      else:
-        print(f"Hello {name} {lastname}")
+        print(f"[bold red]Hello[/bold red]  {name} {lastname}! :boom:")
 
 
 if __name__ == "__main__":
